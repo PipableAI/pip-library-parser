@@ -58,7 +58,8 @@ class PipEtl:
             <function_code>{code}</function_code>
             <instructions> 
             1. In the examples while calling function use the name mentioned after `def ` in the above function_code.
-            2. In the generated docs use valid python type hints as per PEP 484.
+            2. Use the Typing library and annotations properly while generating docs type hints and annotation.
+            3. Use the typing annotations in your generated doc, like in this format: List[Union[str, int]].
             </instructions>
             <question>Document the python code above giving function description ,parameters and return type and example on how to call the function</question>
             <doc>"""
@@ -156,8 +157,8 @@ class PipEtl:
 
             doc = (
                 self.tokenizer.decode(outputs[0], skip_special_tokens=True)
-                .split("<sql>")[-1]
-                .split("</sql>")[0]
+                .split("<sql>")[0]
+                .split("</sql>")[1]
             )
 
             doc = doc.replace("<p>", "").replace("</p>", "")
